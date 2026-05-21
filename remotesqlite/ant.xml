@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<project name="remotesqlite" basedir=".">
+
+	<macrodef name="techo"> 
+		<text name="text"/>
+		<sequential> 
+			<local name="dt" />
+			<tstamp> 
+				<format property="dt" pattern="yyyy-MM-dd HH:mm:ss"/> 
+			</tstamp>          
+			<echo message="${dt} @{text}" />
+		</sequential>
+	</macrodef>
+
+	<target name="build" description="Build client driver from resources">
+		<delete file="${basedir}/remote-sqlite-jdbc-1.0.jar" quiet="true"/>
+		<jar destfile="${basedir}/remote-sqlite-jdbc-1.0.jar" basedir="${basedir}/bin" includes="/remotesqlite/client/**"/>
+		<techo>remote-sqlite-jdbc-1.0.jar created from resources.</techo>
+	</target>
+
+	<target name="start" description="Start Tomcat with listener">
+		<java classname="remotesqlite.TomcatStart" fork="true">
+			<jvmarg value="-Dcom.sun.management.config.file=${basedir}/jmxremote.config" />
+			<classpath>
+				<pathelement path="${basedir}/bin" />
+				<fileset dir="${basedir}/lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="stop" description="Stop Tomcat">
+		<java classname="remotesqlite.TomcatStop" fork="true">
+			<classpath>
+				<pathelement path="${basedir}/bin" />
+			</classpath>
+		</java>
+	</target>
+
+</project>
