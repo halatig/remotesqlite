@@ -1,4 +1,4 @@
-package remotesqlite.client;
+package remotesqlite.jdbc;
 
 import java.sql.SQLException;
 import java.sql.Savepoint;

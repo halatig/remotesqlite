@@ -1,4 +1,4 @@
-package remotesqlite.client;
+package remotesqlite.jdbc;
 
 import java.io.InputStream;
 import java.io.Reader;

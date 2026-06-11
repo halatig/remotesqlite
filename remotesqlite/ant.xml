@@ -14,9 +14,12 @@
 	</macrodef>
 
 	<target name="build" description="Build client driver from resources">
-		<delete file="${basedir}/remote-sqlite-jdbc-1.0.jar" quiet="true"/>
-		<jar destfile="${basedir}/remote-sqlite-jdbc-1.0.jar" basedir="${basedir}/bin" includes="/remotesqlite/client/**"/>
-		<techo>remote-sqlite-jdbc-1.0.jar created from resources.</techo>
+		<delete file="${basedir}/remotesqlite-jdbc-1.0.jar" quiet="true"/>
+		<jar destfile="${basedir}/remotesqlite-jdbc-1.0.jar" basedir="${basedir}/bin" includes="/remotesqlite/jdbc/**"/>
+		<techo>remotesqlite-jdbc-1.0.jar created from resources.</techo>
+		<delete file="${basedir}/remotesqlite-server-1.0.jar" quiet="true"/>
+		<jar destfile="${basedir}/remotesqlite-server-1.0.jar" basedir="${basedir}/bin" includes="/remotesqlite/server/**"/>
+		<techo>remotesqlite-server-1.0.jar created from resources.</techo>
 	</target>
 
 	<target name="start" description="Start Tomcat with listener">

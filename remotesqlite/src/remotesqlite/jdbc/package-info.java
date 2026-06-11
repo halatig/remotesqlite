@@ -4,4 +4,4 @@
  * @author Attila Halasz
  * 
  * */
-package remotesqlite.client;
+package remotesqlite.jdbc;
