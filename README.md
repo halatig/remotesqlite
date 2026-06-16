@@ -25,6 +25,7 @@ The accessible databases can be configured with a remotesqlite.properties file i
 These are predefined database names, and only they can be accessed from the client for security reasons. In the example the chinook.db database can be accessed from the client through "chinook" database name, and because of db level authentication is set, the database name/url must contain a user and a password property.
 
 The JDBC driver implementation is in remotesqlite-jdbc-1.0.jar file. This jar file can be imported as a Generic driver in DBeaver.
+
 ![DBeaver driver settings](https://halatig.github.io/remotesqlite/dbeaver-driver-settings.jpg)
 ![DBeaver driver libraries](https://halatig.github.io/remotesqlite/dbeaver-driver-libraries.jpg)
 
