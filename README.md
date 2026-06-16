@@ -16,7 +16,7 @@ The accessible databases can be configured with a remotesqlite.properties file i
 
 &emsp;remotesqlite.&lt;database name&gt;.path=&lt;sqlite database path on the server&gt;
 
-&emsp;remotesqlite.&lt;database name&gt;.authenticate=true|false
+&emsp;remotesqlite.&lt;database name&gt;.authenticate=true/false
 
 &emsp;remotesqlite.&lt;database name&gt;.user=&lt;user&gt;
 
