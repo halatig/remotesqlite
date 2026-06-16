@@ -1,28 +1,34 @@
 # remotesqlite
 JDBC driver and Tomcat server component for remote SQLite database access over JMX
 
-![Concept art](remotesqlite.jpg)
+![Concept art](https://halatig.github.io/remotesqlite/remotesqlite.jpg)
 
 ## Usage
-Embedded SQLite databases on a Tomcat server are not suitable for remote read and write without a file access connection, especially in containers. This solution is developed for transfer JDBC calls from a remotesqlite driver equipped client (for eg DBeaver) to a Tomcat JMX Bean server component that has access to the SQLite database on the server. The network communication is over JMX technology, that can be protected by authentication and transfer security.
+Embedded SQLite databases in a Tomcat web application are not suitable for remote read and write without a file access server connection. This can be sometimes complicated, especially when using containers.
 
-To get it work the remotesqlite/src/remotesqlite/server classes have to be added to a Tomcat application. The RemoteSQLiteBeanListener registers a RemoteSqliteMBean implementation (RemoteSQLiteBean) on the server, which is a managed bean to receive JMX calls from the client JDBC driver. The JDBC driver implementation is in the remotesqlite/src/remotesqlite/jdbc folder, that is released in a remotesqlite-jdbc-1.0.jar file. This jar file can be imported as a Generic driver in DBeaver.
+This remotesqlite solution is developed for transfer JDBC calls from a remotesqlite driver equipped client (for eg DBeaver) to a JMX Bean server component which JVM has access to the SQLite database on the Tomcat server. The network communication is over JMX technology, that can be protected by authentication and transfer security.
 
-![DBeaver settings](dbeaver-driver-settings.jpg)
-![DBeaver libraries](dbeaver-driver-libraries.jpg)
-![DBeaver libraries](dbeaver-driver-properties.jpg)
+To get it work the remotesqlite-server-1.0.jar has to be added to a Tomcat application lib. The RemoteSQLiteBeanListener registers a RemoteSqliteMBean implementation (RemoteSQLiteBean) on the server, which is a managed bean to receive JMX calls from the client JDBC driver.
+![Remotesqlite bean](https://halatig.github.io/remotesqlite/remotesqlite-bean.jpg)
 
-The result sets are cached on the client for better performance. FINE Logging can be configured with remotesqlite.level parameter (both client and server side).
+The accessible databases can be configured with a remotesqlite.properties file in WEB-INF. It has a structure:
+remotesqlite.<database name>.path=<sqlite database path on the server>
+remotesqlite.<database name>.authenticate=true|false
+remotesqlite.<database name>.user=<user>
+remotesqlite.<database name>.password=<password>
+These are predefined database names, and only they can be accessed from the client for security reasons. In the example the chinook.db database can be accessed from the client through "chinook" database name, and because of db level authentication is set, the database name/url must contain a user and a password property.
 
-The remotesqlite/src/remotesqlite/TomcatStart is an example initialization presentation with an embedded Tomcat. This can be started with an ant script "start" target (see ant.xml). The code looks for tomcat.pid, the file deletion stops the embedded Tomcat, the TomcatStop (triggered by ant "stop" target) does this deletion.
+The JDBC driver implementation is in remotesqlite-jdbc-1.0.jar file. This jar file can be imported as a Generic driver in DBeaver.
+![DBeaver driver settings](https://halatig.github.io/remotesqlite/dbeaver-driver-settings.jpg)
+![DBeaver driver libraries](https://halatig.github.io/remotesqlite/dbeaver-driver-libraries.jpg)
 
-The available databases are predefined "environments", and only they can be accessed from the client for security reasons. Such an environment variable in context.xml:
-\<Environment name="sqlite_chinook" value="jdbc:sqlite:chinook.db" type="java.lang.String"/>
-The program looks for "sqlite_" beginning environment parameters, and in the example the chinook.db database can be accessed from the client through "chinook" environment (database).
+The result sets are cached on the client for better performance. FINE logging can be configured with 'remotesqlite.level' parameter (both client and server side), server side in web.xml/config.xml/remotesqlite.properties file, client side as driver property.
+![DBeaver driver properties](https://halatig.github.io/remotesqlite/dbeaver-driver-properties.jpg)
 
-jmxremote.config file controls the served JMX port. For the embedded Tomcat example there is no authentication and transfer security configured.
+An authentication protected connection example looks like this:
+![DBeaver connection settings](https://halatig.github.io/remotesqlite/dbeaver-connection-settings.jpg)
 
-The neccessary libraries are in the lib folder. The developed solution uses https://github.com/xerial/sqlite-jdbc driver on the server side to access SQLite database.
+The remotesqlite/TomcatStart is a test application with an embedded Tomcat. This can be started with an ant script "start" target. The code looks for tomcat.pid, the file deletion stops the embedded Tomcat, it can triggered by ant "stop" target. The jmxremote.config file controls the served JMX port. For the embedded Tomcat example there is no authentication and transfer security configured. The neccessary libraries are in the lib folder. The developed solution uses https://github.com/xerial/sqlite-jdbc driver on the server side to access SQLite database.
 
-The result looks like this:
-![DBeaver chinook](dbeaver-chinook.jpg)
+The result looks like this in function:
+![DBeaver chinook](https://halatig.github.io/remotesqlite/dbeaver-chinook.jpg)
