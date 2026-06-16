@@ -813,7 +813,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -839,7 +839,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -865,7 +865,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -891,7 +891,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -917,7 +917,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -943,7 +943,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -969,7 +969,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -995,7 +995,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1021,7 +1021,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1047,7 +1047,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1073,7 +1073,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1099,7 +1099,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1125,7 +1125,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1151,7 +1151,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1177,7 +1177,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1203,7 +1203,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1229,7 +1229,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1327,7 +1327,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1348,7 +1348,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.databaseMetaDataGetConnection end");
 			
 			RemoteSqliteConnection remoteSqliteConnection = new RemoteSqliteConnection(_remoteMBeanServerConnection, connectionId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteConnection.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteConnection.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return RemoteSqliteConnection");
 			return remoteSqliteConnection;
@@ -1398,7 +1398,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1424,7 +1424,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -1450,7 +1450,7 @@ public class RemoteSqliteDatabaseMetaData implements DatabaseMetaData {
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;

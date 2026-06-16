@@ -1,8 +1,11 @@
 package remotesqlite.server;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Date;
@@ -20,20 +23,19 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.management.StandardMBean;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NameClassPair;
-import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetMetaDataImpl;
@@ -50,8 +52,7 @@ public class RemoteSqliteBean extends StandardMBean implements RemoteSqliteMBean
 
 	private static Logger _logger = Logger.getLogger(RemoteSqliteBean.class.getName());
 
-	private static Pattern SQLITE_DB = Pattern.compile("sqlite_(.+)");
-	private static Map<String,String> _environmentUrlMap = new LinkedHashMap<String,String>();
+	private static Map<String,Map<String, String>> _databaseMap = new LinkedHashMap<String,Map<String, String>>();
 
 	private Map<String,Connection>			_connectionMap								= new LinkedHashMap<String,Connection>();
 	private Map<String,Set<String>>			_connectionStatementIdMap					= new LinkedHashMap<String,Set<String>>();
@@ -70,7 +71,7 @@ public class RemoteSqliteBean extends StandardMBean implements RemoteSqliteMBean
 	private Map<String,CachedRowSet>		_cachedRowSetMap							= new LinkedHashMap<String,CachedRowSet>();
 
 	/**
-	 * The constructor makes an environment map from the environment urls.
+	 * The constructor makes a database map.
 	 * 
 	 * */
 	public RemoteSqliteBean(ServletContext servletContext) throws NamingException {
@@ -79,23 +80,72 @@ public class RemoteSqliteBean extends StandardMBean implements RemoteSqliteMBean
 		if (level!=null) { try { _logger.setLevel(Level.parse(level)); } catch (Exception e) { } }
 		_logger.fine("start");
 
-		InitialContext initialContext = new InitialContext();
-		Context context = (Context)initialContext.lookup("java:comp/env");
-		NamingEnumeration<NameClassPair> environments = context.list("");
-		while (environments.hasMore()) {
-			String key = environments.next().getName();
-			_logger.fine("key="+key);
-
-			Matcher dbMatcher = SQLITE_DB.matcher(key);
-			if (dbMatcher.find()) {
-				String value = (String)context.lookup(key);
-				_logger.fine("value="+value);
-				key = dbMatcher.group(1);
-				_logger.fine("key="+key);
-				_environmentUrlMap.put(key, value);
+		Properties remotesqliteProperties = new Properties();
+		try (InputStream remotesqliteConfig = servletContext.getResourceAsStream("/WEB-INF/remotesqlite.properties")) {
+			remotesqliteProperties.load(remotesqliteConfig);
+			
+			for (String key : remotesqliteProperties.stringPropertyNames()) {
+				if (key.equals("remotesqlite.level")) {
+					level = remotesqliteProperties.getProperty(key);
+					if (level!=null) { try { _logger.setLevel(Level.parse(level)); } catch (Exception e) { } }					
+				} else if (key.startsWith("remotesqlite.")) {
+                    String[] parts = key.split("\\.");
+                    if (parts.length == 3) {
+                        String database = parts[1];
+                        String property = parts[2];
+                        _databaseMap.putIfAbsent(database, new LinkedHashMap<String,String>());
+                        _databaseMap.get(database).put(property, remotesqliteProperties.getProperty(key));
+                    }
+                }
+            }
+		} catch (IOException e) {
+			_logger.info("remotesqlite.config: file not found, no database is accessible through remotesqlite.");
+		}
+		
+		Iterator<Map.Entry<String, Map<String,String>>> iterator = _databaseMap.entrySet().iterator();
+		while (iterator.hasNext()) {
+		    Map.Entry<String, Map<String,String>> entry = iterator.next();
+		    String key = entry.getKey();
+		    Map<String,String> value = entry.getValue();
+		    if (value.get("path")==null){
+				_logger.warning("remotesqlite.config: Database("+key+") path property is missing, removed from list");
+				iterator.remove();
+				continue;
+			} else {
+				String databasePath = value.get("path");
+				Pattern pattern = Pattern.compile("\\$\\{([^}]+)\\}");
+				Matcher matcher = pattern.matcher(databasePath);
+				StringBuilder stringBuilder = new StringBuilder();
+				while (matcher.find()) {
+		            String propertyValue = System.getProperty(matcher.group(1));
+		            if (propertyValue == null) {
+		            	propertyValue = System.getenv(matcher.group(1));
+		            	if (propertyValue==null) {
+		            		propertyValue = "";
+		            	}
+		            }
+		            matcher.appendReplacement(stringBuilder, Matcher.quoteReplacement(propertyValue));
+				}
+				matcher.appendTail(stringBuilder);
+				databasePath = stringBuilder.toString();
+				
+				if (!Files.exists(Paths.get(databasePath))) {
+					_logger.warning("remotesqlite.config: Database("+key+") file not found, removed from list");
+					iterator.remove();
+					continue;
+				} else {
+					_databaseMap.get(key).put("path", databasePath);							
+				}
+			}
+			if (Boolean.valueOf(value.get("authenticate"))) {
+				if (value.get("user")==null || value.get("password")==null) {
+					_logger.warning("remotesqlite.config: Database("+key+") authentication properties are incomplete, removed from list");
+					iterator.remove();
+					continue;
+				}
 			}
 		}
-
+		
 		_logger.fine("end");
 	}
 
@@ -299,13 +349,37 @@ public class RemoteSqliteBean extends StandardMBean implements RemoteSqliteMBean
 
 	//DRIVER
 	@Override
-	public String driverConnect(String environment) throws NamingException, SQLException {
+	public String driverConnect(String database) throws NamingException, SQLException {
 		_logger.fine("start");
 
-		String url = (String)_environmentUrlMap.get(environment);
-		if (url == null) { throw new SQLException("Environment ("+environment+") not found."); }
-		
-		Connection connection = DriverManager.getConnection(url);
+		String[] databaseParts = database.split("\\?");
+		String databaseName = databaseParts[0];
+		Map<String, String> databaseProperties = _databaseMap.get(databaseName);
+		if (databaseProperties == null) { throw new SQLException("Database ("+databaseName+") not found."); }
+
+		if (Boolean.valueOf(databaseProperties.get("authenticate"))) {
+			String databaseUser = "";
+			String databasePassword = "";
+			if (databaseParts.length > 1) {
+				String[] databaseParams = databaseParts[1].split("&");
+				for (String param : databaseParams) {
+		            String[] keyValue = param.split("=");
+		            if (keyValue.length == 2) {
+		                if (keyValue[0].toLowerCase().equals("user")) {
+		                	databaseUser = keyValue[1];
+		                } else if (keyValue[0].toLowerCase().equals("password")) {
+		                    databasePassword = keyValue[1];
+		                }
+		            }
+		        }
+			}
+
+			if (!databaseUser.equals(databaseProperties.get("user")) || !databasePassword.equals(databaseProperties.get("password"))) {
+				throw new SQLException("Database ("+databaseName+") authentication failed."); 
+			}
+		}
+			
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:"+databaseProperties.get("path"));
 
 		String connectionId = UUID.randomUUID().toString();
 		_logger.fine("connectionId="+connectionId);

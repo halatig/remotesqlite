@@ -59,7 +59,7 @@ public class RemoteSqlitePreparedStatement extends RemoteSqliteStatement impleme
 			_logger.fine("RemoteSqliteBean.getCachedRowSet end");
 
 			LocalSqliteResultSet localSqliteResultSet = new LocalSqliteResultSet(cachedRowSet, _remoteMBeanServerConnection, resultSetId);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSet.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSet.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSet");
 			return localSqliteResultSet;
@@ -491,7 +491,7 @@ public class RemoteSqlitePreparedStatement extends RemoteSqliteStatement impleme
 			_logger.fine("RemoteSqliteBean.preparedStatementGetMetaData end");
 
 			LocalSqliteResultSetMetaData localSqliteResultSetMetaData = new LocalSqliteResultSetMetaData(rowSetMetaDataImpl);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSetMetaData.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSetMetaData.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSetMetaData");
 			return localSqliteResultSetMetaData;
@@ -582,7 +582,7 @@ public class RemoteSqlitePreparedStatement extends RemoteSqliteStatement impleme
 			_logger.fine("RemoteSqliteBean.preparedStatementGetParameterMetaData end");
 			
 			RemoteSqliteParameterMetaData remoteSqliteParameterMetaData = new RemoteSqliteParameterMetaData(_remoteMBeanServerConnection, parameterMetaDataId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteParameterMetaData.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteParameterMetaData.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return RemoteSqliteParameterMetaData");
 			return remoteSqliteParameterMetaData;

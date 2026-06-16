@@ -58,7 +58,7 @@ public class RemoteSqliteDriver implements Driver {
 	/**
 	 * Creates a remote SQLite Connection.
 	 * 
-	 * @param url the remote database environment URL in form: jdbc:remotesqlite:jmx_rmi_host:jmx_rmi_port:environment
+	 * @param url the remote database environment URL in form: jdbc:remotesqlite:jmx_rmi_host:jmx_rmi_port:database, where database must match a preconfigured environment on server (database='name?user=u&password=p')
 	 * @param info logging property
 	 * @return a remote SQlite Connection
 	 * @throws SQLException if remote connection fails or if the remote endpoint has JDBC error
@@ -91,8 +91,8 @@ public class RemoteSqliteDriver implements Driver {
 
 		String JMXURL = "service:jmx:rmi:///jndi/rmi://" + urlMatcher.group(1) + ":" + urlMatcher.group(2) + "/jmxrmi";
 		_logger.fine("JMXURL="+JMXURL);
-		String environment = urlMatcher.group(3);
-		_logger.fine("environment="+environment);
+		String database = urlMatcher.group(3);
+		_logger.fine("database="+database);
 
 		try {
 			JMXServiceURL JMXServiceURL = new JMXServiceURL(JMXURL);
@@ -101,12 +101,12 @@ public class RemoteSqliteDriver implements Driver {
 
 			_logger.fine("RemoteSqliteBean.driverConnect start");
     		ObjectName remoteSqliteBeanObj = new ObjectName("Catalina:type=Resource,resourcetype=Context,host=localhost,context=/,class=remotesqlite.server.RemoteSqliteBean,name=\"remotesqlite/RemoteSqliteBean\"");
-			String connectionId = (String)remoteMBeanServerConnection.invoke(remoteSqliteBeanObj, "driverConnect", new Object[] { environment }, new String[] {String.class.getName()});
+			String connectionId = (String)remoteMBeanServerConnection.invoke(remoteSqliteBeanObj, "driverConnect", new Object[] { database }, new String[] {String.class.getName()});
 			_logger.fine("connectionId="+connectionId);
 			_logger.fine("RemoteSqliteBean.driverConnect end");
 
 			RemoteSqliteConnection remoteSqliteConnection = new RemoteSqliteConnection(remoteMBeanServerConnection, connectionId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteConnection.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteConnection.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteConnection");
 			return remoteSqliteConnection;

@@ -63,7 +63,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionCreateStatement end");
 
 			RemoteSqliteStatement remoteSqliteStatement = new RemoteSqliteStatement(_remoteMBeanServerConnection, statementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteStatement");
 			return remoteSqliteStatement;
@@ -84,7 +84,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionPrepareStatement end");
 
 			RemoteSqlitePreparedStatement remoteSqlitePreparedStatement = new RemoteSqlitePreparedStatement(_remoteMBeanServerConnection, preparedStatementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqlitePreparedStatement");
 			return remoteSqlitePreparedStatement;
@@ -216,7 +216,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionGetMetaData end");
 
 			RemoteSqliteDatabaseMetaData remoteSqliteDatabaseMetaData = new RemoteSqliteDatabaseMetaData(_remoteMBeanServerConnection, databaseMetaDataId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteDatabaseMetaData.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteDatabaseMetaData.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteDatabaseMetaData");
 			return remoteSqliteDatabaseMetaData;
@@ -350,7 +350,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionCreateStatement2 end");
 
 			RemoteSqliteStatement remoteSqliteStatement = new RemoteSqliteStatement(_remoteMBeanServerConnection, statementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteStatement");
 			return remoteSqliteStatement;
@@ -371,7 +371,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionPrepareStatement2 end");
 
 			RemoteSqlitePreparedStatement remoteSqlitePreparedStatement = new RemoteSqlitePreparedStatement(_remoteMBeanServerConnection, preparedStatementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqlitePreparedStatement");
 			return remoteSqlitePreparedStatement;
@@ -466,7 +466,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionSetSavepoint end");
 
 			RemoteSqliteSavepoint remoteSqliteSavepoint = new RemoteSqliteSavepoint(_remoteMBeanServerConnection, savepointId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteSavepoint.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteSavepoint.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteSavepoint");
 			return remoteSqliteSavepoint;
@@ -487,7 +487,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionSetSavepoint2 end");
 
 			RemoteSqliteSavepoint remoteSqliteSavepoint = new RemoteSqliteSavepoint(_remoteMBeanServerConnection, savepointId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteSavepoint.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteSavepoint.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteSavepoint");
 			return remoteSqliteSavepoint;
@@ -540,7 +540,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionCreateStatement3 end");
 
 			RemoteSqliteStatement remoteSqliteStatement = new RemoteSqliteStatement(_remoteMBeanServerConnection, statementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqliteStatement");
 			return remoteSqliteStatement;
@@ -561,7 +561,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionPrepareStatement3 end");
 
 			RemoteSqlitePreparedStatement remoteSqlitePreparedStatement = new RemoteSqlitePreparedStatement(_remoteMBeanServerConnection, preparedStatementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqlitePreparedStatement");
 			return remoteSqlitePreparedStatement;
@@ -588,7 +588,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionPrepareStatement4 end");
 
 			RemoteSqlitePreparedStatement remoteSqlitePreparedStatement = new RemoteSqlitePreparedStatement(_remoteMBeanServerConnection, preparedStatementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqlitePreparedStatement");
 			return remoteSqlitePreparedStatement;
@@ -609,7 +609,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionPrepareStatement5 end");
 
 			RemoteSqlitePreparedStatement remoteSqlitePreparedStatement = new RemoteSqlitePreparedStatement(_remoteMBeanServerConnection, preparedStatementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqlitePreparedStatement");
 			return remoteSqlitePreparedStatement;
@@ -630,7 +630,7 @@ public class RemoteSqliteConnection implements Connection {
 			_logger.fine("RemoteSqliteBean.connectionPrepareStatement6 end");
 
 			RemoteSqlitePreparedStatement remoteSqlitePreparedStatement = new RemoteSqlitePreparedStatement(_remoteMBeanServerConnection, preparedStatementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqlitePreparedStatement.setLoggerLevel(_logger.getLevel());
 
 			_logger.fine("end with return RemoteSqlitePreparedStatement");
 			return remoteSqlitePreparedStatement;

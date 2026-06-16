@@ -6,8 +6,13 @@ import java.io.IOException;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
-import org.apache.tomcat.util.descriptor.web.ContextEnvironment;
 
+/**
+ * Embedded Tomcat test.
+ *   
+ * @author Attila Halasz
+ * 
+ * */
 public class TomcatStart {
 	
 	public static void main(String[] args) throws LifecycleException  {
@@ -20,16 +25,19 @@ public class TomcatStart {
 	    String docBase = new File(".").getAbsolutePath();
 	    Context context = tomcat.addContext("", docBase);
 
+	    //META-INF/config.xml
 	    //<Parameter name="remotesqlite.level" value="FINE" />
-	    context.addParameter("remotesqlite.level", "FINE");
+	    //
+	    //or
+	    //
+	    //WEB-INF/web.xml
+	    //<context-param>
+    	//	<param-name>remotesqlite.level</param-name>
+	    //	<param-value>FINE</param-value>
+	    //</context-param>
+	    //
+	    //context.addParameter("remotesqlite.level", "FINE");
 	        
-	    //<Environment name="sqlite_chinook" value="jdbc:sqlite:chinook.db" type="java.lang.String"/>
-	    ContextEnvironment contextEnvironment = new ContextEnvironment();
-	    contextEnvironment.setName("sqlite_chinook");
-	    contextEnvironment.setValue("jdbc:sqlite:chinook.db");
-	    contextEnvironment.setType(String.class.getName());
-	    context.getNamingResources().addEnvironment(contextEnvironment);
-
 	    context.addApplicationListener(remotesqlite.server.RemoteSqliteBeanListener.class.getName());
 
     	tomcat.start();

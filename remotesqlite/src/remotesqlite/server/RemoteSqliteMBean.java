@@ -12,6 +12,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
+
 import javax.naming.NamingException;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetMetaDataImpl;
@@ -26,7 +27,7 @@ public interface RemoteSqliteMBean {
 
 	public CachedRowSet					getCachedRowSet						(String resultSetId) throws SQLException;
 	
-	public String						driverConnect						(String environment) throws NamingException, SQLException;
+	public String						driverConnect						(String database) throws NamingException, SQLException;
 	
 //	+: implemented in client side
 //	-: not implemented in SQLite or SQLFeatureNotSupportedException, or not implemented as remote SQLite feature

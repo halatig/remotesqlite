@@ -13,7 +13,7 @@
 		</sequential>
 	</macrodef>
 
-	<target name="build" description="Build client driver from resources">
+	<target name="build" description="Build client driver and server component from resources">
 		<delete file="${basedir}/remotesqlite-jdbc-1.0.jar" quiet="true"/>
 		<jar destfile="${basedir}/remotesqlite-jdbc-1.0.jar" basedir="${basedir}/bin" includes="/remotesqlite/jdbc/**"/>
 		<techo>remotesqlite-jdbc-1.0.jar created from resources.</techo>
@@ -35,11 +35,7 @@
 	</target>
 
 	<target name="stop" description="Stop Tomcat">
-		<java classname="remotesqlite.TomcatStop" fork="true">
-			<classpath>
-				<pathelement path="${basedir}/bin" />
-			</classpath>
-		</java>
+		<delete file="${basedir}/tomcat.pid" quiet="true"/>
 	</target>
 
 </project>

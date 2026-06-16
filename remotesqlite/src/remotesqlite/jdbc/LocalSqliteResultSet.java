@@ -272,7 +272,7 @@ public class LocalSqliteResultSet implements ResultSet {
 
 			RowSetMetaDataImpl rowSetMetaDataImpl = (RowSetMetaDataImpl)_cachedRowSet.getMetaData();
 			LocalSqliteResultSetMetaData localSqliteResultSetMetaData = new LocalSqliteResultSetMetaData(rowSetMetaDataImpl);
-			if (!_logger.getLevel().equals(Level.INFO)) { localSqliteResultSetMetaData.setLoggerLevel(_logger.getLevel()); }
+			localSqliteResultSetMetaData.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return LocalSqliteResultSetMetaData");
 			return localSqliteResultSetMetaData;
@@ -746,7 +746,7 @@ public class LocalSqliteResultSet implements ResultSet {
 			_logger.fine("RemoteSqliteBean.resultSetGetStatement end");
 			
 			RemoteSqliteStatement remoteSqliteStatement = new RemoteSqliteStatement(_remoteMBeanServerConnection, statementId);
-			if (!_logger.getLevel().equals(Level.INFO)) { remoteSqliteStatement.setLoggerLevel(_logger.getLevel()); }
+			remoteSqliteStatement.setLoggerLevel(_logger.getLevel());
 			
 			_logger.fine("end with return RemoteSqliteStatement");
 			return remoteSqliteStatement;
