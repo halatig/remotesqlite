@@ -9,13 +9,19 @@ Embedded SQLite databases in a Tomcat web application are not suitable for remot
 This remotesqlite solution is developed for transfer JDBC calls from a remotesqlite driver equipped client (for eg DBeaver) to a JMX Bean server component which JVM has access to the SQLite database on the Tomcat server. The network communication is over JMX technology, that can be protected by authentication and transfer security.
 
 To get it work the remotesqlite-server-1.0.jar has to be added to a Tomcat application lib. The RemoteSQLiteBeanListener registers a RemoteSqliteMBean implementation (RemoteSQLiteBean) on the server, which is a managed bean to receive JMX calls from the client JDBC driver.
+
 ![Remotesqlite bean](https://halatig.github.io/remotesqlite/remotesqlite-bean.jpg)
 
 The accessible databases can be configured with a remotesqlite.properties file in WEB-INF. It has a structure:
-remotesqlite.&lt;database name&gt;.path=&lt;sqlite database path on the server>
+
+remotesqlite.&lt;database name&gt;.path=&lt;sqlite database path on the server&gt;
+
 remotesqlite.&lt;database name&gt;.authenticate=true|false
+
 remotesqlite.&lt;database name&gt;.user=&lt;user&gt;
+
 remotesqlite.&lt;database name&gt;.password=&lt;password&gt;
+
 These are predefined database names, and only they can be accessed from the client for security reasons. In the example the chinook.db database can be accessed from the client through "chinook" database name, and because of db level authentication is set, the database name/url must contain a user and a password property.
 
 The JDBC driver implementation is in remotesqlite-jdbc-1.0.jar file. This jar file can be imported as a Generic driver in DBeaver.
